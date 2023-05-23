@@ -18,4 +18,10 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+class Reviews(models.Model):
+    text = models.CharField(max_length=255)
+    created_date = models.DateTimeField(auto_now_add=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.product.title} - {self.text}'
