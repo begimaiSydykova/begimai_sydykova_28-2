@@ -1,0 +1,41 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+    <style type="text/css">
+        .product_block {
+            width: 80%;
+            margin-left: 10%;
+        }
+        .product_block > img {
+            width: 100%;
+        }
+        .reviews{
+            width: 80%;
+            margin-left: 10%;
+        }
+        .review_block{
+            padding: 10px;
+            background: #242b2e;
+            color: #fff;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+    
+    <div class="product_block">
+        <img src="/media/{{ product.image }}" alt="image">
+        <h1>{{ product.title }}</h1>
+        <h5>{{ product.description }}</h5>
+        <h4>Price: {{ product.price }}</h4>
+    </div>
+
+    <div class="reviews">
+        {% for review in reviews %}
+            <div class="review_block">
+                <h5>{{ review.text }}</h5>
+                <p>{{ review.created_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+
+    <style type="text/css">
+        .products{
+            margin-top: 30px;
+            margin-left: 10%;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+    </style>
+
+    <div class="products">
+        {% for product in products %}
+            <div class="product_block">
+                <h5>{{ product.title }}</h5>
+                <p>{{ product.description }}</p>
+                <p>Price: {{ product.price }}</p>
+                <a href="/products/{{ product.id }}" class="card-link">More</a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
