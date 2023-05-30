@@ -16,12 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
 
-from posts.views import hello_view, now_date_view, goodby_view
+from posts.views import main_page_view, products_view, product_detail_view, product_create_view, review_create_view
+
+from users.views import auth_view, register_view
+
+from lesson1 import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', hello_view),
-    path('now_date/', now_date_view),
-    path('goodby/', goodby_view),
+
+    path('', main_page_view),
+
+    path('products/', products_view),
+    path('products/create/', product_create_view),
+    path('products/<int:id_>', product_detail_view),
+
+    path('products/createreviews/', review_create_view),
+
+    path('users/auth/', auth_view),
+    path('users/register/', register_view),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
