@@ -1,0 +1,16 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+
+    <div class="auth_container"
+        style="display: flex; align-items: center; justify-content: center">
+        <form action="/users/auth/" method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+{% endblock %}
