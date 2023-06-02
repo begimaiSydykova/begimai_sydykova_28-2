@@ -1,0 +1,39 @@
+{% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'products.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="search">
+        <form action="/products/" method="get">
+            <input type="text" name="search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div class="products">
+        {% for product in products %}
+            <div class="product_block">
+                {% if product.image %}
+                    <img src="/media/{{ product.image }}" alt="image">
+                {% else %}
+                    <img src="{% static 'default.jpg' %}" alt="image">
+                {% endif %}
+                <h5>{{ product.title }}</h5>
+                <h4>Price: {{ product.price }}</h4>
+                <a href="/products/{{ product.id }}" class="card-link">More</a>
+            </div>
+        {% endfor %}
+
+    </div>
+    
+    <div class="pages">
+        {% for page in pages %}
+            <a href="/products/?page={{ page }}">
+                <button>{{ page }}</button>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}
